@@ -74,13 +74,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         filledPos[clickedTag] = activePlayer
 
         if (activePlayer == player1) {
-            btnClicked.setText("0")
+            btnClicked.setText("X")
             activePlayer = player2
             tv.setText("Second player turn")
             btnClicked.setTextColor(Color.BLACK)
             btnClicked.backgroundTintList = getColorStateList(R.color.audi_red)
         } else {
-            btnClicked.setText("X")
+            btnClicked.setText("O")
             activePlayer = player1
             tv.setText("First player turn")
             btnClicked.backgroundTintList = getColorStateList(R.color.bmw_orange)
