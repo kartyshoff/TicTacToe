@@ -8,7 +8,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-
+/*
+Simple Tic Tac Toe game made by Mikhail Kartyshov with some initial help of  Dr. Parag Shukla
+15.07.2022
+ */
 class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     lateinit var b0 : Button
