@@ -13,7 +13,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginBottom="83dp"
         android:text="Tic Tac Toe"
-        android:textColor="#000"
+        android:textColor="#C3C3C3"
         android:textSize="25sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
@@ -27,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:text="Player 1 turn"
-        android:textColor="#000"
+        android:textColor="#C3C3C3"
         android:textSize="20sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
@@ -53,6 +53,7 @@
 
             <Button
                 android:id="@+id/b0"
+                android:tag="0"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -63,6 +64,7 @@
 
             <Button
                 android:id="@+id/b1"
+                android:tag="1"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -73,6 +75,7 @@
 
             <Button
                 android:id="@+id/b2"
+                android:tag="2"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -91,6 +94,7 @@
 
             <Button
                 android:id="@+id/b3"
+                android:tag="3"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -101,6 +105,7 @@
 
             <Button
                 android:id="@+id/b4"
+                android:tag="4"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -111,6 +116,7 @@
 
             <Button
                 android:id="@+id/b5"
+                android:tag="5"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -129,6 +135,7 @@
 
             <Button
                 android:id="@+id/b6"
+                android:tag="6"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -139,6 +146,7 @@
 
             <Button
                 android:id="@+id/b7"
+                android:tag="7"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
@@ -149,6 +157,7 @@
 
             <Button
                 android:id="@+id/b8"
+                android:tag="8"
                 android:textSize="60sp"
                 android:layout_margin="10sp"
                 android:layout_width="wrap_content"
