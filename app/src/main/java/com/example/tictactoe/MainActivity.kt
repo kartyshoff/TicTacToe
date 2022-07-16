@@ -13,7 +13,8 @@ Simple Tic Tac Toe game made by Mikhail Kartyshov with some initial help of  Dr.
 15.07.2022
  */
 class MainActivity : AppCompatActivity(), View.OnClickListener {
-
+    // we use lateinit because we will use it later; it would be easier for us to appoint vars now
+    // here we have buttons from 0 to 8
     lateinit var b0 : Button
     lateinit var b1 : Button
     lateinit var b2 : Button
@@ -23,10 +24,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var b6 : Button
     lateinit var b7 : Button
     lateinit var b8 : Button
-    lateinit var filledPos : IntArray
-    lateinit var tv : TextView
+    lateinit var filledPos : IntArray //
+    lateinit var tv : TextView //
 
-    var gameActive = true
+    var gameActive = true // status of the game
     var player1 = 0
     var player2 = 1
     var activePlayer = player1
