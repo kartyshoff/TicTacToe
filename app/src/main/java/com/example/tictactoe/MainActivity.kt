@@ -38,7 +38,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1) // by default all positions are unfilled
 
-        tv = findViewById(R.id.textView2)
+        tv = findViewById(R.id.textView2) // appoint tv variable to its id, that we used in .xml
         b0 = findViewById(R.id.b0) // appoint button variables to their id, that we used in .xml
         b1 = findViewById(R.id.b1)
         b2 = findViewById(R.id.b2)
