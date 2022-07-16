@@ -57,6 +57,16 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         b6.setOnClickListener(this)
         b7.setOnClickListener(this)
         b8.setOnClickListener(this)
+
+        b0.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background) // i think there's a way to make it more neat
+        b1.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b2.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b3.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b4.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b5.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b6.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b7.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b8.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
     }
 
     override fun onClick(v: View?) {
@@ -64,8 +74,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if(!gameActive) // if game is already finished, we can't do anything
             return
 
-        var btnClicked = findViewById<Button>(v!!.id) // determine which button was clicked by its id
-        var clickedTag = Integer.parseInt(btnClicked.tag.toString()) // when we click the button, we save the tag to int
+        val btnClicked = findViewById<Button>(v!!.id) // determine which button was clicked by its id
+        val clickedTag = Integer.parseInt(btnClicked.tag.toString()) // when we click the button, we save the tag to int array
 
         if(filledPos[clickedTag] != -1) // if the button is already X or O, then return
             return
@@ -73,29 +83,30 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         filledPos[clickedTag] = activePlayer // tag marked as player's 1 or 2
 
         if (activePlayer == player1) { // if it is first player's turn
-            btnClicked.setText("X") // setting X if player clicked the button
+            btnClicked.text = "X" // setting X if player clicked the button
             activePlayer = player2 // making player2 active player
-            tv.setText("Second player turn") // texting, that it is second player's turn
-            btnClicked.setTextColor(Color.BLACK)
+            tv.text = "Second player turn" // texting, that it is second player's turn
+            btnClicked.setTextColor(Color.LTGRAY) // setting color for the X symbol
             btnClicked.backgroundTintList = getColorStateList(R.color.audi_red) // paint the button, that was clicked
         } else { // if it is second player's turn
-            btnClicked.setText("O") // setting 0 if player clicked the button
+            btnClicked.text = "O" // setting 0 if player clicked the button
             activePlayer = player1 // making player1 active player
-            tv.setText("First player turn") // texting, that it is first player's turn
+            tv.text = "First player turn" // texting, that it is first player's turn
+            btnClicked.setTextColor(Color.LTGRAY) // setting color for the 0 symbol
             btnClicked.backgroundTintList = getColorStateList(R.color.bmw_orange) // paint the button, that was clicked
         }
         checkForWin()
     }
 
     private fun checkForWin() {
-        var winPos = arrayOf(intArrayOf(0,1,2), intArrayOf(3,4,5), intArrayOf(6,7,8), intArrayOf(0,3,6), intArrayOf(1,4,7), intArrayOf(2,5,8), intArrayOf(0,4,8), intArrayOf(2,4,6)) // these are winning positions
+        val winPos = arrayOf(intArrayOf(0,1,2), intArrayOf(3,4,5), intArrayOf(6,7,8), intArrayOf(0,3,6), intArrayOf(1,4,7), intArrayOf(2,5,8), intArrayOf(0,4,8), intArrayOf(2,4,6)) // these are winning positions
 
-        for(i in 0 until winPos.size) {
-            var val0 = winPos[i][0]
-            var val1 = winPos[i][1]
-            var val2 = winPos[i][2]
+        for(i in winPos.indices) { // the loop will run 8 times to determine if there's a winning position on the table
+            val val0 = winPos[i][0]
+            val val1 = winPos[i][1]
+            val val2 = winPos[i][2]
 
-            if(filledPos[val0] == filledPos[val1] && filledPos[val1] == filledPos[val2]) {
+            if(filledPos[val0] == filledPos[val1] && filledPos[val1] == filledPos[val2]) { // if val0 val1 and val2 are the same, then it's a win
                 if(filledPos[val0] != -1) { // check filled positions
                     gameActive = false // change status of the game, if someone won
                     if (filledPos[val0] == player1) { // if the first player won, we show this message
@@ -108,13 +119,14 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             }
         }
         var count = 0
-        for(i in 0 until filledPos.size) {
-            if(filledPos[i] == -1) {
+        for(element in filledPos) { // check for draw
+            if(element == -1) { // if there's any positions to fill, then we increment count by 1
                 count++
             }
         }
-        if(count == 0) { // if we don't have a winner, then it's a draw, so we show this message
+        if(count == 0) { // if there's no positions to fill, then count won't increment, then it's a draw, so we show this message
             showMessage("It's a draw. Try again!")
+            return
         }
 
     }
@@ -123,32 +135,32 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         AlertDialog.Builder(this)
             .setMessage(s)
             .setTitle("Tic Tac Toe")
-            .setPositiveButton("Restart Game", DialogInterface.OnClickListener { dialog, which -> restartGame() })
+            .setPositiveButton("Restart Game", DialogInterface.OnClickListener { _, _ -> restartGame() })
             .show()
     }
 
     private fun restartGame() { // return all the settings to default to restart the game
-        filledPos = intArrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1)  // all positions are unfilled
+        filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)  // all positions are unfilled
         activePlayer = player1 // first player is making the first turn
         gameActive = true // game is active
-        tv.setText("First player turn") // setting the info text
-        b0.setText("") // clearing all the buttons
-        b1.setText("")
-        b2.setText("")
-        b3.setText("")
-        b4.setText("")
-        b5.setText("")
-        b6.setText("")
-        b7.setText("")
-        b8.setText("")
-        b0.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary) // giving all the buttons their default color
-        b1.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b2.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b3.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b4.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b5.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b6.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b7.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
-        b8.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
+        tv.text = "First player turn" // setting the info text
+        b0.text = "" // clearing all the buttons
+        b1.text = ""
+        b2.text = ""
+        b3.text = ""
+        b4.text = ""
+        b5.text = ""
+        b6.text = ""
+        b7.text = ""
+        b8.text = ""
+        b0.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background) // giving all the buttons their default color
+        b1.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b2.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b3.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b4.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b5.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b6.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b7.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
+        b8.backgroundTintList = getColorStateList(com.google.android.material.R.color.cardview_dark_background)
     }
 }
