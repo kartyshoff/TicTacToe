@@ -24,7 +24,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var b6 : Button
     lateinit var b7 : Button
     lateinit var b8 : Button
-    lateinit var filledPos : IntArray // positions that are filled with X or O
+    lateinit var filledPos : IntArray // positions that are filled with X or 0
     lateinit var tv : TextView //
 
     var gameActive = true // status of the game
@@ -36,7 +36,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)
+        filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1) // by default all positions are unfilled
 
         tv = findViewById(R.id.textView2)
         b0 = findViewById(R.id.b0)
@@ -128,12 +128,12 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .show()
     }
 
-    private fun restartGame() {
-        filledPos = intArrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1)
-        activePlayer = player1
-        gameActive = true
-        tv.setText("First player turn")
-        b0.setText("")
+    private fun restartGame() { // return all the settings to default to restart the game
+        filledPos = intArrayOf(-1,-1,-1,-1,-1,-1,-1,-1,-1)  // all positions are unfilled
+        activePlayer = player1 // first player is making the first turn
+        gameActive = true // game is active
+        tv.setText("First player turn") // setting the info text
+        b0.setText("") // clearing all the buttons
         b1.setText("")
         b2.setText("")
         b3.setText("")
@@ -142,7 +142,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         b6.setText("")
         b7.setText("")
         b8.setText("")
-        b0.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
+        b0.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary) // giving all the buttons their default color
         b1.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
         b2.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
         b3.backgroundTintList = getColorStateList(com.google.android.material.R.color.design_default_color_primary)
