@@ -24,13 +24,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var b6 : Button
     lateinit var b7 : Button
     lateinit var b8 : Button
-    lateinit var filledPos : IntArray //
+    lateinit var filledPos : IntArray // positions that are filled with X or O
     lateinit var tv : TextView //
 
     var gameActive = true // status of the game
     var player1 = 0
     var player2 = 1
-    var activePlayer = player1
+    var activePlayer = player1 // player1 starts the game
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -85,13 +85,11 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             tv.setText("First player turn")
             btnClicked.backgroundTintList = getColorStateList(R.color.bmw_orange)
         }
-
         checkForWin()
-
     }
 
     private fun checkForWin() {
-        var winPos = arrayOf(intArrayOf(0,1,2), intArrayOf(3,4,5), intArrayOf(6,7,8), intArrayOf(0,3,6), intArrayOf(1,4,7), intArrayOf(2,5,8), intArrayOf(0,4,8), intArrayOf(2,4,6))
+        var winPos = arrayOf(intArrayOf(0,1,2), intArrayOf(3,4,5), intArrayOf(6,7,8), intArrayOf(0,3,6), intArrayOf(1,4,7), intArrayOf(2,5,8), intArrayOf(0,4,8), intArrayOf(2,4,6)) // these are winning positions
 
         for(i in 0 until winPos.size) {
             var val0 = winPos[i][0]
@@ -100,10 +98,10 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
             if(filledPos[val0] == filledPos[val1] && filledPos[val1] == filledPos[val2]) {
                 if(filledPos[val0] != -1) {
-                    gameActive = false
-                    if (filledPos[val0] == player1) {
+                    gameActive = false // change status of the game, if someone won
+                    if (filledPos[val0] == player1) { // if the first player won, we show this message
                         showMessage("First Player is the winner. Congrats!")
-                    } else {
+                    } else { // if the first player didn't win, we show this message
                         showMessage("Second Player is the winner. Congrats!")
                     }
                     return
@@ -116,13 +114,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
                 count++
             }
         }
-        if(count == 0) {
+        if(count == 0) { // if we don't have a winner, then it's a draw, so we show this message
             showMessage("It's a draw. Try again!")
         }
 
     }
 
-    private fun showMessage(s: String) {
+    private fun showMessage(s: String) { // showing message to restart the game
         AlertDialog.Builder(this)
             .setMessage(s)
             .setTitle("Tic Tac Toe")
