@@ -1,5 +1,8 @@
 package com.example.tictactoe
-
+/*
+Simple Tic Tac Toe game made by Mikhail Kartyshov with some initial help of  Dr. Parag Shukla
+15.07.2022
+ */
 import android.content.DialogInterface
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
@@ -8,14 +11,10 @@ import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
-/*
-Simple Tic Tac Toe game made by Mikhail Kartyshov with some initial help of  Dr. Parag Shukla
-15.07.2022
- */
+
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     // we use lateinit because we will use it later; it would be easier for us to appoint vars now
-    // here we have buttons from 0 to 8
-    lateinit var b0 : Button
+    lateinit var b0 : Button // here we have buttons from 0 to 8
     lateinit var b1 : Button
     lateinit var b2 : Button
     lateinit var b3 : Button
@@ -24,8 +23,8 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var b6 : Button
     lateinit var b7 : Button
     lateinit var b8 : Button
-    lateinit var filledPos : IntArray // positions that are filled with X or 0
-    lateinit var tv : TextView //
+    lateinit var filledPos : IntArray // positions that could be filled with X or 0
+    lateinit var tv : TextView // player-1 turn or player-2 turn
 
     var gameActive = true // status of the game
     var player1 = 0
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1) // by default all positions are unfilled
 
-        tv = findViewById(R.id.textView2) // appoint tv variable to its id, that we used in .xml
         b0 = findViewById(R.id.b0) // appoint button variables to their id, that we used in .xml
         b1 = findViewById(R.id.b1)
         b2 = findViewById(R.id.b2)
@@ -48,6 +46,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         b6 = findViewById(R.id.b6)
         b7 = findViewById(R.id.b7)
         b8 = findViewById(R.id.b8)
+        tv = findViewById(R.id.textView2) // appoint tv variable to its id, that we used in .xml
 
         b0.setOnClickListener(this)
         b1.setOnClickListener(this)
@@ -65,13 +64,13 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         if(!gameActive) // if game is already finished, we can't do anything
             return
 
-        var btnClicked = findViewById<Button>(v!!.id)
-        var clickedTag = Integer.parseInt(btnClicked.tag.toString())
+        var btnClicked = findViewById<Button>(v!!.id) // determine which button was clicked by its id
+        var clickedTag = Integer.parseInt(btnClicked.tag.toString()) // when we click the button, we save the tag to int
 
-        if(filledPos[clickedTag] != -1)
+        if(filledPos[clickedTag] != -1) // if the button is already X or O, then return
             return
 
-        filledPos[clickedTag] = activePlayer
+        filledPos[clickedTag] = activePlayer // tag marked as player's 1 or 2
 
         if (activePlayer == player1) { // if it is first player's turn
             btnClicked.setText("X") // setting X if player clicked the button
