@@ -7,5 +7,4 @@ What should I change later?
 1. Better layout
 2. Custom icons for X and 0
 3. Change colors
-4. Update code
-
+4. Rework the Restart game function
