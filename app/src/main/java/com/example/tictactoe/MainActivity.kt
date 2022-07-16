@@ -39,7 +39,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
         filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1) // by default all positions are unfilled
 
         tv = findViewById(R.id.textView2)
-        b0 = findViewById(R.id.b0)
+        b0 = findViewById(R.id.b0) // appoint button variables to their id, that we used in .xml
         b1 = findViewById(R.id.b1)
         b2 = findViewById(R.id.b2)
         b3 = findViewById(R.id.b3)
@@ -62,7 +62,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onClick(v: View?) {
 
-        if(!gameActive)
+        if(!gameActive) // if game is already finished, we can't do anything
             return
 
         var btnClicked = findViewById<Button>(v!!.id)
@@ -73,17 +73,17 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
 
         filledPos[clickedTag] = activePlayer
 
-        if (activePlayer == player1) {
-            btnClicked.setText("X")
-            activePlayer = player2
-            tv.setText("Second player turn")
+        if (activePlayer == player1) { // if it is first player's turn
+            btnClicked.setText("X") // setting X if player clicked the button
+            activePlayer = player2 // making player2 active player
+            tv.setText("Second player turn") // texting, that it is second player's turn
             btnClicked.setTextColor(Color.BLACK)
-            btnClicked.backgroundTintList = getColorStateList(R.color.audi_red)
-        } else {
-            btnClicked.setText("O")
-            activePlayer = player1
-            tv.setText("First player turn")
-            btnClicked.backgroundTintList = getColorStateList(R.color.bmw_orange)
+            btnClicked.backgroundTintList = getColorStateList(R.color.audi_red) // paint the button, that was clicked
+        } else { // if it is second player's turn
+            btnClicked.setText("O") // setting 0 if player clicked the button
+            activePlayer = player1 // making player1 active player
+            tv.setText("First player turn") // texting, that it is first player's turn
+            btnClicked.backgroundTintList = getColorStateList(R.color.bmw_orange) // paint the button, that was clicked
         }
         checkForWin()
     }
@@ -97,7 +97,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             var val2 = winPos[i][2]
 
             if(filledPos[val0] == filledPos[val1] && filledPos[val1] == filledPos[val2]) {
-                if(filledPos[val0] != -1) {
+                if(filledPos[val0] != -1) { // check filled positions
                     gameActive = false // change status of the game, if someone won
                     if (filledPos[val0] == player1) { // if the first player won, we show this message
                         showMessage("First Player is the winner. Congrats!")
