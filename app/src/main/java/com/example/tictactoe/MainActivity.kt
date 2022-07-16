@@ -24,10 +24,9 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
     lateinit var b7 : Button
     lateinit var b8 : Button
     lateinit var filledPos : IntArray
+    lateinit var tv : TextView
 
     var gameActive = true
-
-    lateinit var tv : TextView
     var player1 = 0
     var player2 = 1
     var activePlayer = player1
