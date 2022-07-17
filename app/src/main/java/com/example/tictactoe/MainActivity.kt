@@ -138,7 +138,7 @@ class MainActivity : AppCompatActivity(), View.OnClickListener {
             .setPositiveButton("Restart Game", DialogInterface.OnClickListener { _, _ -> restartGame() })
             .show()
     }
-
+    // The idea is pretty simple. I have to create another function with starting conditions. If would trigger if var X == 1. By default X == 0. After the game ends, X += 1
     private fun restartGame() { // return all the settings to default to restart the game
         filledPos = intArrayOf(-1, -1, -1, -1, -1, -1, -1, -1, -1)  // all positions are unfilled
         activePlayer = player1 // first player is making the first turn
