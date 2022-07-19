@@ -10,3 +10,4 @@ What should I change later?
 4. Rework the Restart game function
 5. Update the code
 6. Update showMessage function
+7. Add precondition(?)
