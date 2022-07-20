@@ -8,6 +8,5 @@ What should I change later?
 2. Custom icons for X and 0
 3. Change colors
 4. Rework the Restart game function
-5. Update the code
-6. Update showMessage function
-7. Add precondition(?)
+5. Update showMessage function
+6. Refactoring
